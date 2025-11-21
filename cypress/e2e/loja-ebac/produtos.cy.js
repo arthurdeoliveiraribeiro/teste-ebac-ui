@@ -8,7 +8,7 @@ describe('Funcionalide: Cadastro',() =>{
 
     //antes de cada teste ele vai fazer isso
     beforeEach(()=>{
-        cy.visit('http://lojaebac.ebaconline.art.br/produtos/')
+        cy.visit('produtos/')
     })
 
     it('Deve selecionar o  primeiro produto da lista', () =>{

@@ -8,7 +8,7 @@ describe('Funcionalide: Cadastro',() =>{
 
     //antes de cada teste ele vai fazer isso
     beforeEach(()=>{
-        cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
+        cy.visit('minha-conta/')
     })
 
     it('Deve fazer cadastro com sucesso', () =>{
