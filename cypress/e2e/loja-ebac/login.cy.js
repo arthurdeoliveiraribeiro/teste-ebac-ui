@@ -47,7 +47,7 @@ describe('Funcionalide: LOGIN',() =>{
         
     })
 
-    it.only('Deve fazer login com sucesso, usando fixture', () =>{
+    it('Deve fazer login com sucesso, usando fixture', () =>{
         cy.fixture('perfil').then(dados=>{
             cy.get('#username').type(dados.usuario)
             cy.get('#password').type(dados.senha, {log: false})
@@ -55,4 +55,22 @@ describe('Funcionalide: LOGIN',() =>{
             cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain','Olá, arthuroliveiraribeiro9 (não é arthuroliveiraribeiro9? Sair)')
         })        
     })
+
+    it('Deve ser usado os comandos customizados(fixture)',()=>{
+        cy.fixture('perfil').then(dados =>{
+            cy.login(dados.usuario,dados.senha)
+        })
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain','Olá, arthuroliveiraribeiro9 (não é arthuroliveiraribeiro9? Sair)')
+        
+    })
+    it('Deve ser usado os comandos customizados',()=>{
+        cy.login(perfil.usuario,perfil.senha)
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain','Olá, arthuroliveiraribeiro9 (não é arthuroliveiraribeiro9? Sair)')
+    })
+
+    it.only('Deve exibir mensagem de erro quando selecionar email invalido',() =>{
+        cy.login('asdas@ucl.br','dasdasd')
+        cy.get('.woocommerce-error').should('contain','Endereço de e-mail desconhecido. Verifique novamente ou tente seu nome de usuário.')
+    })
+
 })

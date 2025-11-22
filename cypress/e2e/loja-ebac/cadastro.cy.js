@@ -12,13 +12,6 @@ describe('Funcionalide: Cadastro',() =>{
     })
 
     it('Deve fazer cadastro com sucesso', () =>{
-        cy.get('#reg_email').type(faker.internet.email())
-        cy.get('#reg_password').type('teste')
-        cy.get(':nth-child(4) > .button').click()
-        cy.get('.woocommerce-MyAccount-navigation-link--edit-account > a').click()
-        cy.get('#account_first_name').type(faker.person.firstName())
-        cy.get('#account_last_name').type(faker.person.lastName())
-        cy.get('.woocommerce-Button').click()
         cy.get('.woocommerce-message').should('contain', 'Detalhes da conta modificados com sucesso.')
     })
 
@@ -36,4 +29,14 @@ describe('Funcionalide: Cadastro',() =>{
         cy.get('.woocommerce-Button').click()
         cy.get('.woocommerce-message').should('contain', 'Detalhes da conta modificados com sucesso.')
     })
+
+    it.only('Deve fazer cadastro com sucesso, Usando variaveis', () =>{
+
+        var email =faker.internet.email()
+        var primeiroNome = faker.person.firstName()
+        var ultimoNome = faker.person.lastName()
+        cy.cadastro(email,'teste1',primeiroNome,ultimoNome)
+        cy.get('.woocommerce-message').should('contain', 'Detalhes da conta modificados com sucesso.')
+    })
+
 })
